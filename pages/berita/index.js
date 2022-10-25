@@ -1,5 +1,6 @@
 import React from 'react'
-import Header from '../../component/Header'
+import Navbar from '../../component/Navbar';
+// import Header from '../../component/Navbar'
 
 class Index extends React.Component{
 
@@ -8,7 +9,7 @@ class Index extends React.Component{
         return(
             <>
             
-            <Header/>
+            <Navbar/>
             
             </>
         );

@@ -41,7 +41,7 @@ const Header = () => {
                         </Link>
                         <Link href="/login">
                             <a
-                                className="btn btn-success2"
+                                className="btn btn-success"
                             >
                                 Login
                             </a>

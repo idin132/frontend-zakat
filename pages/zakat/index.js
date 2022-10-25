@@ -1,7 +1,19 @@
-import React from 'react'
-import Header from '../../component/Header'
+import React from 'react';
+// import Header from '../../component/Header';
+import Navbar from '../../component/Navbar';
 import Link from 'next/link';
+import * as Endpoint from '../../service/Endpoint';
 import CurrencyFormat from 'react-currency-format';
+import axios from 'axios';
+import { trackPromise } from 'react-promise-tracker';
+
+
+const options = [
+    { value: ({zakat_penghasilan: 'block',zakat_fitrah: 'none'}), label: "Zakat Penghasilan" },
+    { value: ({zakat_penghasilan: 'none',zakat_fitrah: 'block'}), label: "Zakat Fitrah" }
+];
+
+const api = Endpoint.BASE_URL
 
 class Index extends React.Component {
     constructor(props) {
@@ -9,16 +21,15 @@ class Index extends React.Component {
         this.state = {
             qty_beras: '',
 
-            zakat_penghasilan: 'none',
-            zakat_fitrah: 'block',
-            zakat_mal: 'none',
+            zakat_penghasilan: 'block',
+            zakat_fitrah: 'none',
 
             bayar_zakat_penghasilan_hitung: 'none',
             notes: '',
             total: '0',
 
             category_zakat_data: [],
-            kategori: 'zakat fitrah',
+            kategori: '',
 
             penghasilan_perbulan: '',
             penghasilan_lainnya: '',
@@ -34,6 +45,16 @@ class Index extends React.Component {
         this.hitungZakatPenghasilan = this.hitungZakatPenghasilan.bind(this);
         this.hitungZakatFitrah = this.hitungZakatFitrah.bind(this);
 
+    }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+        trackPromise(
+            axios.get(api + '/api/kategori?=' + 3).then(
+                res => {
+                    this.setState({ category_zakat_data: res.data.data });
+                }
+            )
+        )
     }
 
     handleInputPenghasilanPerbulanChange(event) {
@@ -89,7 +110,7 @@ class Index extends React.Component {
         return (
             <>
 
-                <Header />
+                <Navbar />
 
                 <section>
                     <div className='block'>
@@ -103,7 +124,7 @@ class Index extends React.Component {
                                         {
                                             this.state.category_zakat_data.map((val) => {
                                                 return (
-                                                    <option value={val.id}>{val.category}</option>
+                                                    <option value={val.id}>{val.kategori_zakat}</option>
                                                 )
                                             })
                                         }
@@ -174,7 +195,7 @@ class Index extends React.Component {
                             </div>
                             <div className='col-md-6'>
                                 <div className='flex-bayar-zakat'>
-                                    <h4 className="text-center" style={{ marginTop: '20%' }}>Jumlah Zakat</h4>
+                                    <h4 className="text-center" style={{ marginTop: '5%' }}>Jumlah Zakat</h4>
                                     <h3 className="text-center txt-total-zakat" id="jumlah_zakat_side">Rp. {this.state.total}</h3>
 
                                     {/* <span id="notes"></span> */}
