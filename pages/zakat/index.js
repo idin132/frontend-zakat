@@ -65,13 +65,13 @@ class Index extends React.Component {
 
     handleChange(event) {
         this.setState({ kategori: event.target.value });
-        var id = event.target.value;
-        if (id === '1') {
+        var id_zakat = event.target.value;
+        if (id_zakat === 'ZK01') {
             this.setState({
                 zakat_penghasilan: 'block',
                 zakat_fitrah: 'none',
             });
-        } else if (id === '3') {
+        } else if (id_zakat === 'ZK02') {
             this.setState({
                 zakat_penghasilan: 'none',
                 zakat_fitrah: 'block',
@@ -118,7 +118,7 @@ class Index extends React.Component {
                                         {
                                             this.state.category_zakat_data.map((val) => {
                                                 return (
-                                                    <option value={val.id}>{val.kategori_zakat}</option>
+                                                    <option value={val.id_zakat}>{val.kategori_zakat}</option>
                                                 )
                                             })
                                         }

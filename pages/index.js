@@ -4,6 +4,7 @@ import Navbar from '../component/Navbar'
 import Slider from '../component/Slider'
 import Program from '../component/program'
 import Footer from '../component/Footer'
+import axios from 'axios'
 import * as Endpoint from '../service/Endpoint'
 
 const api = Endpoint.BASE_URL
@@ -18,19 +19,41 @@ class Dashboard extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getStatistik();
+  }
+
   getStatistik() {
     axios.get(api + '/api/total').then(
       result => {
         var donasi = '';
-        if (result.data.donasi.jumlah === null) {
+        if (result.data.jumlah === null) {
           donasi = 'Rp. 0';
         } else {
-          donasi = 'Rp. ' + result.data.donasi.jumlah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          donasi = 'Rp. ' + result.data.jumlah?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
-        this.setState({ donasi_terkumpul_statistik: donasi, donasi_terkumpul_statistik2: result.data.donatur, loading: "none" });
+        this.setState({ donasi_terkumpul_statistik: donasi });
       }
     );
   }
+
+  numberFormat = (v) => {
+    var number_string = v.toString().replace(/^0+/, "");
+    var number_amount = number_string.replace(/[^,\d]/g, ""),
+      split = number_amount.split(","),
+      sisa = split[0].length % 3,
+      rupiah = split[0].substr(0, sisa),
+      ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan) {
+      var separator = sisa ? "." : "";
+      rupiah += separator + ribuan.join(".");
+    }
+
+    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+    return rupiah;
+  };
   render() {
     const {
       itemslider,

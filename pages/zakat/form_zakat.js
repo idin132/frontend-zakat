@@ -89,7 +89,7 @@ class Form extends React.Component {
             // kategori: document.getElementById("kategori").value,
         });
 
-        axios.get(api + "/api/zakat/category?id_yayasan=" + 3).then((res) => {
+        axios.get(api + "/api/kategori").then((res) => {
             this.setState({ category_zakat_data: res.data.data });
         });
 
@@ -253,9 +253,9 @@ class Form extends React.Component {
         var dots = email.lastIndexOf(".");
         var validasiAngka = /^[0-9]+$/;
         if (category_id === "") {
-            // alert("Kategori Harus di Isi");
-            // this.setState({ btn_text: "Lanjutkan Pembayaran", btn_disable: false });
-            // document.getElementById("btnZakat").disabled = false;
+            alert("Kategori Harus di Isi");
+            this.setState({ btn_text: "Lanjutkan Pembayaran", btn_disable: false });
+            document.getElementById("btnZakat").disabled = false;
         } else if (jumlah_zakat === "") {
             // alert("Jumlah Zakat harus di Isi");
             // this.setState({ btn_text: "Lanjutkan Pembayaran", btn_disable: false });
@@ -420,9 +420,9 @@ class Form extends React.Component {
                                         return (
                                             <option
                                                 value={val.id}
-                                                selected={val.category == this.state.kategori}
+                                                selected={val.kategori_zakat == this.state.kategori}
                                             >
-                                                {val.category}
+                                                {val.kategori_zakat}
                                             </option>
                                         );
                                     })}
