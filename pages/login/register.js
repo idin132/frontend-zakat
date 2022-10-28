@@ -14,7 +14,7 @@ class Daftar extends Component {
             username: '',
             email: '',
             nama: '',
-            no_telp: '',
+            no_hp: '',
             password: '',
             password_confirm: '',
             alamat: '',
@@ -32,7 +32,7 @@ class Daftar extends Component {
 
     send() {
         const {
-            username, email, nama, no_telp, password, password_confirm, alamat,
+            username, email, nama, no_hp, password, password_confirm, alamat,
         } = this.state
 
         if (username == null || username == '') {
@@ -41,7 +41,7 @@ class Daftar extends Component {
             alert('Email Tidak Boleh Kosong')
         } else if (nama == null || nama == '') {
             alert('Nama Tidak Boleh Kosong')
-        } else if (no_telp == null || no_telp == '') {
+        } else if (no_hp == null || no_hp == '') {
             alert('Nomor Telepon Tidak Boleh Kosong')
         } else if (password == null || password == '') {
             alert('Password Tidak Boleh Kosong')
@@ -56,7 +56,7 @@ class Daftar extends Component {
                 "username": username,
                 "email": email,
                 "name": nama,
-                "no_telp": no_telp,
+                "no_hp": no_hp,
                 "password": password,
                 "alamat": alamat,
             }
@@ -69,7 +69,7 @@ class Daftar extends Component {
 
     render() {
         const {
-            username, email, nama, no_telp, password, password_confirm, alamat, go_back, go_home
+            username, email, nama, no_hp, password, password_confirm, alamat, go_back, go_home
         } = this.state
         if (go_back)
             return <Redirect exact to="/login" />
@@ -90,7 +90,7 @@ class Daftar extends Component {
                             <input type="text" className="form-control lgn-frm" placeholder="Masukkan Username" name="username" value={username} onChange={(e) => this.handleInputChange(e)} /><br />
                             <input type="email" className="form-control lgn-frm" placeholder="Masukkan Email" name="email" value={email} onChange={(e) => this.handleInputChange(e)} /><br />
                             <input type="text" className="form-control lgn-frm" placeholder="Masukkan Nama" name="nama" value={nama} onChange={(e) => this.handleInputChange(e)} /><br />
-                            <input type="number" className="form-control lgn-frm" placeholder="Masukkan No Telp" name="no_telp" value={no_telp} onChange={(e) => this.handleInputChange(e)} /><br />
+                            <input type="number" className="form-control lgn-frm" placeholder="Masukkan No Hp" name="no_hp" value={no_hp} onChange={(e) => this.handleInputChange(e)} /><br />
                             <input type="password" className="form-control lgn-frm" placeholder="Masukkan Password" name="password" value={password} onChange={(e) => this.handleInputChange(e)} /><br />
                             <input type="password" className="form-control lgn-frm" placeholder="Ketik Ulang Password" name="password_confirm" value={password_confirm} onChange={(e) => this.handleInputChange(e)} /><br />
                             <input type="text" className="form-control lgn-frm" placeholder="Alamat" name="alamat" value={alamat} onChange={(e) => this.handleInputChange(e)} /><br />

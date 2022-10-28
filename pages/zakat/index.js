@@ -7,12 +7,6 @@ import CurrencyFormat from 'react-currency-format';
 import axios from 'axios';
 import { trackPromise } from 'react-promise-tracker';
 
-
-const options = [
-    { value: ({zakat_penghasilan: 'block',zakat_fitrah: 'none'}), label: "Zakat Penghasilan" },
-    { value: ({zakat_penghasilan: 'none',zakat_fitrah: 'block'}), label: "Zakat Fitrah" }
-];
-
 const api = Endpoint.BASE_URL
 
 class Index extends React.Component {
@@ -49,7 +43,7 @@ class Index extends React.Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         trackPromise(
-            axios.get(api + '/api/kategori?=' + 3).then(
+            axios.get(api + '/api/kategori').then(
                 res => {
                     this.setState({ category_zakat_data: res.data.data });
                 }
@@ -72,12 +66,12 @@ class Index extends React.Component {
     handleChange(event) {
         this.setState({ kategori: event.target.value });
         var id = event.target.value;
-        if (id === '80') {
+        if (id === '1') {
             this.setState({
                 zakat_penghasilan: 'block',
                 zakat_fitrah: 'none',
             });
-        } else if (id === '81') {
+        } else if (id === '3') {
             this.setState({
                 zakat_penghasilan: 'none',
                 zakat_fitrah: 'block',
@@ -114,7 +108,7 @@ class Index extends React.Component {
 
                 <section>
                     <div className='block'>
-                        <h2 className="sc_donations_title sc_item_title" style={{ fontSize: '35px', textAlign: 'center', marginBottom: '50px' }}>Kalkulator Zakat</h2>
+                        <h2 className="sc_donations_title sc_item_title" style={{ fontSize: '35px', textAlign: 'center', marginTop:'20px', marginBottom: '50px' }}>Kalkulator Zakat</h2>
 
                         <div className='row'>
                             <div className='col-md-6'>
@@ -202,7 +196,7 @@ class Index extends React.Component {
 
                                     <div id="bayar_zakat_penghasilan_hitung" style={{ display: this.state.bayar_zakat_penghasilan_hitung }}>{this.state.notes}</div>
 
-                                    <Link className="thm-btn2 btn-bayar-zakat" id="bayar_zakat" title="" itemprop="url" style={{ textAlign: 'center', textDecoration: 'none', width: '100%', marginTop: '20px' }} href={{ pathname: '/zakat/form_zakat', total: this.state.total, kategori: this.state.kategori }}>
+                                    <Link className="thm-btn2 btn-bayar-zakat" id="bayar_zakat" title="" itemprop="url" style={{ textAlign: 'center', textDecoration: 'none', width: '100%', marginTop: '20px', marginBottom: '20px' }} href={{ pathname: '/zakat/form_zakat', total: this.state.total, kategori: this.state.kategori }}>
                                         Bayar Zakat
                                     </Link>
                                 </div>
