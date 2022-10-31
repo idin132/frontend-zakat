@@ -37,23 +37,23 @@ class Dashboard extends React.Component {
     );
   }
 
-  numberFormat = (v) => {
-    var number_string = v.toString().replace(/^0+/, "");
-    var number_amount = number_string.replace(/[^,\d]/g, ""),
-      split = number_amount.split(","),
-      sisa = split[0].length % 3,
-      rupiah = split[0].substr(0, sisa),
-      ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+  // numberFormat = (v) => {
+  //   var number_string = v.toString().replace(/^0+/, "");
+  //   var number_amount = number_string.replace(/[^,\d]/g, ""),
+  //     split = number_amount.split(","),
+  //     sisa = split[0].length % 3,
+  //     rupiah = split[0].substr(0, sisa),
+  //     ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if (ribuan) {
-      var separator = sisa ? "." : "";
-      rupiah += separator + ribuan.join(".");
-    }
+  //   // tambahkan titik jika yang di input sudah menjadi angka ribuan
+  //   if (ribuan) {
+  //     var separator = sisa ? "." : "";
+  //     rupiah += separator + ribuan.join(".");
+  //   }
 
-    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
-    return rupiah;
-  };
+  //   rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+  //   return rupiah;
+  // };
   render() {
     const {
       itemslider,
@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
 
         <section className="how_help row" style={{ paddingTop: '40px', paddingBottom: '50px' }}>
             <div className="container">
-              <div className="white-box yayasan-info">
+              <div className="white-box info">
                 <div className="col-sm-6 help-process">
                   <h2 className="head-statistik">{donasi_terkumpul_statistik}</h2>
                   <p className="desc-statistik">Donasi Terkumpul</p>

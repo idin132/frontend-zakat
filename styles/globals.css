@@ -174,6 +174,32 @@ header {
 }
 /* EndNavbar */
 
+/* Statistik */
+.white-box {
+  background-color: white;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.head-statistik {
+  text-align: center;
+  font-size: 50px;
+  font-family: montserrat;
+  font-weight: bold;
+  color: #65FFDC;
+}
+
+.desc-statistik {
+  text-align: center;
+  font-size: 17px;
+}
+
 /* Login */
 .base-login {
   background-color: #65FFDC;
